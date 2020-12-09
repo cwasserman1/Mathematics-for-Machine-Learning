@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+\usepackage{amssymb}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \begin{document}
@@ -49,11 +50,25 @@ In the introduction, we will introduce the concept of machine learning and write
 \section{Main Section}
 In this section, we will define many terms related to machine learning including  cost function, regression, classification, neural networks. We will provide the many formulas related to these terms and provide sample implementations of some of these functions and algorithms in python.
 \section{Proofs}
-In this section, we are going to show two proofs related to machine learning. We are most likely going to focus on proving the convergence of gradient descent and proving the cost function for linear regression.
+\begin{enumerate}
+    \item \textbf{Proof of the Cost Function for Univariate Linear Regression}\\
+    Let the cost function be defined by: \[
+    J(\theta) = \frac{1}{2m} \sum_{i = 1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^{2}
+    \]
+    For all $m$ $\in \mathbb{N}$, let $A$ be an arbitrary function where \smallskip $A = \{ (x_1, y_1), (x_2, y_2) \dots (x_m, y_m) \}$.\\
+    \smallskip Note that set $A$ represents the number of points in the given data set.\\
+    \smallskip Let $h_{\theta}$ be the linear function we're trying to computing the squared error of.\\
+    \smallskip $h_{\theta}(x^{i})$ = $\theta_0 + \theta_1x$ where $\theta_0$ is the y-intercept and $\theta_1$ is the slope.
+    
+     
+    \item \textbf{Proof of gradient descent with fixed step size}
+    \[
+    \theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta_{j}}   J(\theta)
+    \]
+\end{enumerate}
 \section{Conclusion}
 Here, we will write a conclusion about the project.
 \section{References}
 Here, we will list all of the references we use in our project.
-
 
 \end{document}
