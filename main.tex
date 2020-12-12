@@ -637,7 +637,11 @@ To show the progression of our theta, we plot the cost of it against the number 
     f(x_k) \leq f(x^*) + \frac{\norm{x_0-x^*}_2^2}{2tk}
     \]
     Proof: 
-    \newline Take the GD function, $x_{i+1} = x_{i} - t\nabla f(x_i)$, and apply Property 1: 
+    \newline Next, we can bound f(x
++), the objective value at the next iteration, in terms of f(x
+∗
+), the optimal objective
+value. Since f is convex, we can write: 
     \begin{equation}
     \begin{split}
     f(x_{i}) + 	\langle\nabla f(x_{i}), x_{i+1}-x_{i}\rangle \leq f(x_{i+1}) 
