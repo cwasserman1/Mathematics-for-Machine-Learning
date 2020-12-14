@@ -1,25 +1,15 @@
-\documentclass{article}
+\documentclass[11pt]{article}
+\bibliographystyle{abbrv}
 \usepackage[utf8]{inputenc}
-
-\usepackage[
-backend=biber,
-style=alphabetic,
-sorting=ynt
-]{biblatex}
-
-\addbibresource{bibliography.bib}
-
 \usepackage[english]{babel}
 \usepackage{graphicx}
-\usepackage{amssymb}
-\usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
-   \documentclass[11pt]{article}
+\usepackage{url}
    \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
     \usepackage[breakable]{tcolorbox}
@@ -438,9 +428,20 @@ sorting=ynt
 
 \section{Abstract}
 
-Machine learning is the process of mimicking human-like intuition through the capabilities of computer algorithms and the ability for machines to improve themselves through experience. Its applications are demonstrated through things such as data modeling, image/speech recognition, web recommendations/advertisements, etc. Unlike humans, who are able to see a given problem and instinctively produce a solution or method of solving the problem using our previous knowledge of what has worked and what has not, machines don’t have this capability; instead, they are only able to do exactly as dictated in the algorithms that we provide them with. However, the benefit of this is that machines are significantly faster at performing repeated tasks than humans are. Take the problem of finding the sum of $1+2+3+\dots+100$ for example. While there is obviously a formula to help us solve this problem faster, even applying it may take us a minute or so. A machine, however, given the correct code, would be able to find the solution in a fraction of a second, even by the method of iterating through each integer. Although that application may seem simple, the capacities of machines expand way beyond just solving addition problems. Machine learning takes the computer’s ability to perform repetitive tasks quickly and translates it into a means to find patterns. The types of learning can be broken down into three categories: supervised, unsupervised, and reinforcement. Supervised learning involves providing the machine with the exact patterns to look for, unsupervised learning involves the machine finding whatever patterns there are, and reinforcement learning involves having a clear objective and trying out different things until the objective is met. These learning methods all involve elements of math (multivariable calculus and linear algebra, most frequently), and in this report we will explore their applications in two fundamental concepts of machine learning: cost functions and gradient descent. 
+Machine learning is the process of mimicking human-like intuition through the capabilities of computer algorithms and the ability for machines to improve themselves through experience. Its applications are demonstrated through things such as data modeling, image/speech recognition, web recommendations/advertisements, etc. Unlike humans, who are able to see a given problem and instinctively produce a solution or method of solving the problem using our previous knowledge of what has worked and what has not, machines don’t have this capability; instead, they are only able to do exactly as dictated in the algorithms that we provide them with. However, the benefit of this is that machines are significantly faster at performing repeated tasks than humans are. Take the problem of finding the sum of $1+2+3+\dots+100$ for example. While there is obviously a formula to help us solve this problem faster, even applying it may take us a minute or so. A machine, however, given the correct code, would be able to find the solution in a fraction of a second, even by the method of iterating through each integer. Although that application may seem simple, the capacities of machines expand way beyond just solving addition problems. Machine learning takes the computer’s ability to perform repetitive tasks quickly and translates it into a means to find patterns. The types of learning can be broken down into three categories: supervised learning involves providing the machine with the correct patterns to look for, unsupervised learning involves the machine finding whatever patterns there are, and reinforcement learning involves having a clear objective and trying out different things until the objective is met. In the main section, we will go into more detail about each of these.
 
+These learning methods all involve elements of math (multivariable calculus and linear algebra, most frequently), and in this report we will explore their applications in two fundamental concepts of machine learning: cost functions and gradient descent.
 \section{Main Section}
+As mentioned earlier, there are three main types of machine learning algorithms: supervised learning, unsupervised learning, and reinforcement learning.
+\begin{enumerate}
+    \item \textbf{Supervised learning}\\
+    In supervised learning, the model is told the "correct" information and pattern to look for in the data that it is given. This is done by feeding the algorithm a list of input values that are paired with a distinct, correct output value and giving the algorithm a type of relationship to look for in the data. Typically, input data for supervised learning algorithms are split up into two categories, training and testing data. The training data, as the name suggests, is used to train and build the model on. Testing data, on the other hand is used to check that the model is making accurate predictions and not simply "memorizing" the data. Supervised learning has two main types of algorithms: classification and regression. Classification is the process of finding a function that maps the input values to a discrete output. Many classification algorithms would have outputs such as "yes/no". For instance, a classification algorithm could be used to predict whether a patient does or does not have a type of cancer based on the an input of symptoms that they report. Regression algorithms are used to predict a continuous output. For example, in linear regression, one of the simplest types of supervised learning algorithms, the algorithm will attempt to find a linear relationship  between in data and make an equation of a line that best fits this data. This line can be used to make predictions about a certain type of data. A good problem that linear regression would be useful in solving is attempting to predict a house price in a neighborhood given the house's square footage. Supervised learning, linear regression in particular, is going to be the main subject of this research paper.
+    \item \textbf{Unsupervised learning}\\
+    Unsupervised learning is a notch up in terms of complexity from supervised learning. In unsupervised learning, the algorithm is not given an explicit pattern or instructions to look for in the data that it is given. It is the job of the algorithm to find a structure in the data without being told what to look for. Examples of an unsupervised learning algorithms are all clustering models such as k nearest neighbors clustering and hierarchical clustering.
+    \item \textbf{Reinforcement learning}\\
+    Reinforcement learning is the most recent, complex, and commonly used process of learning, where the machine improves by trial and error. Similar to reinforcement learning in humans, the machine is rewarded or penalized for for its actions based on whether or not they were successful. An example of this learning method would be teaching a machine to master a game such as chess. Over time and through many trials, the machine would be able to learn and recall with moves/series of moves results in wins and losses, with advancement in the game being the reward and detriment in the game being the penalty. The greatest challenge associated with reinforcement learning is building the simulation environment. While simulating a game of chess may be rather straightforward, creating an environment to test self driving machines, for example, would likely not be as simple as other factors (e.g. cost, safety, available space, resources) become relevant.
+ 
+\end{enumerate}
 \textbf{Linear Regression}\newline
 The most basic and standard concept involved in the understanding of machine learning algorithms, linear regression is the way of modeling a group of data through a linear representation, or in other words: $y=ax+b$. The process involves finding a linear model such that the sum of the differences between the actual values that are greater than their predicted values and the predicted values is roughly equal to the sum of the differences between the predicted values and the actual values that are less than their predicted values.\smallskip\newline
 Example with pictures on a random set of points:\bigskip\newline
@@ -449,6 +450,7 @@ Used to maximize accuracy, this describes how closely a linear regression model 
 \[
     J(\theta_0,\theta_1) = \frac{1}{m} \sum_{i = 1}^{m}(h_{\theta}(x^{(i)})-y^{(i)})^{2}
 \]
+Where $m$ is the number of datapoints in the dataset, $h_{\theta}(x^{(i)})$ is the predicted output of the current model for the $ith$ element of the dataset, and $y(^i)$ is the actual value of the $ith$ value of the dataset.
 Code Implementation (Python): \smallskip\newline
 \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{20}{\boxspacing}
@@ -471,36 +473,12 @@ value to theta, the slope and y-intercept in the case of linear regression, and 
        \scalebox{1.2}{$ \theta_{j} := \theta_{j} - \alpha \frac{\partial}{\partial \theta_{j}}   J(\theta) $} \newline
        In this equation, $\theta_j$ represents the parameters of the model. In univariate linear regression, theta is a vector that stores both the slope and y-intercept of the model. \scalebox{1.3}{$\alpha$} represents the learning rate of gradient descent. \scalebox{1.3}{$\alpha$} is a value that is arbitrarily chosen by the programmer that determines how many iterations gradient descent will have to go through in order to converge. Smaller values of  \scalebox{1.3}{$\alpha$} will result in more iterations of gradient descent and are generally more accurate but take significantly longer to run than larger step sizes. Lastly, $ \frac{\partial}{\partial \theta_{j}}   J(\theta) $ represents the partial derivative of the cost function $J(\theta)$ with respect to theta.
 
-  
-    
-     
-Code Implementation (Python): \newline
- \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{21}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k}{def} \PY{n+nf}{gradientDescent}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{alpha}\PY{p}{,}\PY{n}{iterations}\PY{p}{)}\PY{p}{:}
-\PY{c+c1}{\PYZsh{}     initialtheta = np.zeros((X.shape[1],1))}
-    \PY{n}{m} \PY{o}{=} \PY{n}{y}\PY{o}{.}\PY{n}{size}
-    \PY{n}{X} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
-    \PY{n}{y} \PY{o}{=} \PY{n}{y}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{y}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
-    \PY{n}{X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{insert}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
-    \PY{n}{theta} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
-    \PY{n}{costProg} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-    \PY{n}{thetaProg} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{iterations}\PY{p}{)}\PY{p}{:}
-        \PY{n}{tempTheta} \PY{o}{=} \PY{n}{theta}
-        \PY{n}{costProg}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{computeCost}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{theta}\PY{p}{)}\PY{p}{)}
-        \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{theta}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{p}{:}
-            \PY{n}{cost} \PY{o}{=} \PY{p}{(}\PY{n}{alpha}\PY{o}{/}\PY{n}{m}\PY{p}{)}\PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{h}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{theta}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{y}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{m}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
-            \PY{n}{tempTheta}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{tempTheta}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cost}
-        \PY{n}{theta} \PY{o}{=} \PY{n}{tempTheta}
-        \PY{n}{thetaProg}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{theta}\PY{p}{)}
-    \PY{k}{return} \PY{n}{costProg}\PY{p}{,}\PY{n}{thetaProg}\PY{p}{,}\PY{n}{theta}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{y}
-\end{Verbatim}
-\end{tcolorbox}
+ 
+
 We have decided to show a full implementation of linear regression. To do this, we have selected a dataset from the internet to run our model on. The dataset displays the amouut crime in Chicago as a function of the number of house fires per 1000 housing units. Here is a scatterplot of our data: \newline\smallskip
 \includegraphics[scale = .85]{CrimeVsHouseFiresPNG.png}\\
-As seen, the data show a clear(although not perfect) linear pattern. Next we have gradient descent as a function which takes the parameters $X$,a matrix containing all of the x values of the matrix, $y$, a matrix containing all of the y-values of the dataset, alpha, the learning rate which is $\alpha$ from the previous equation, and $iterations$, which is the number of iterations that gradient descent will perform. The function returns, $costProg$ an array that contains the cost from every iteration of gradient descent, $thetaProg$, an array that contains the value of theta at every iteration of gradient descent, $theta$, the final value of theta and $X$ and $y$ which are the feature and target values of the dataset respectively.\\
+As seen, the data show a clear(although not perfect) linear pattern.\\
+Below, we have implemented gradient descent as a Python function. It takes the parameters $X$,a matrix containing all of the x values of the matrix, $y$, a matrix containing all of the y-values of the dataset, alpha, the learning rate which is $\alpha$ from the previous equation, and $iterations$, which is the number of iterations that gradient descent will perform. The function returns, $costProg$ an array that contains the cost from every iteration of gradient descent, $thetaProg$, an array that contains the value of theta at every iteration of gradient descent, $theta$, the final value of theta and $X$ and $y$ which are the feature and target values of the dataset respectively.\\
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{1}{\boxspacing}
@@ -533,7 +511,7 @@ As seen, the data show a clear(although not perfect) linear pattern. Next we hav
 \end{Verbatim}
 \end{tcolorbox}
 
-To show the progression of our theta, we plot the cost of it against the number of iterations. As seen in the following visual, the cost of theta open the first iteration was extremely high. Upon each iteration, as theta became increasingly correct, the cost of theta went down. It is clearly shown that around the tenth iteration, the cost of the model with the updated thetas had essentially converged, meaning that gradient descent had found the optimal values of  theta for the data. 
+To show the progression of our theta, we plot the cost of it against the number of iterations. As seen in the following visual, the cost of theta at the first iteration was extremely high, which means that our initial model was very wrong. Upon each iteration, as theta became increasingly correct, the cost of theta went down. It is clearly shown that around the tenth iteration, the cost of the model had essentially converged, meaning that our theta values were extremely close to ther optimal values of theta. 
 \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -550,8 +528,9 @@ To show the progression of our theta, we plot the cost of it against the number 
     \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_10_0.png}
     \end{center}
     { \hspace*{\fill} \\}
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
     Now finally, with the optimal value of theta as found by our gradient descent function, we can plot our model against the data.
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+    
 \prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
@@ -568,6 +547,7 @@ To show the progression of our theta, we plot the cost of it against the number 
     \begin{center}
     \adjustimage{max size={0.6\linewidth}{0.6\paperheight}}{output_9_0.png}
     \end{center}
+    The model above shows our model when plotted on a graph against the our data. This is the final model that our linear regression algorithm calculated.
     { \hspace*{\fill} \\}
     
     
@@ -619,15 +599,15 @@ To show the progression of our theta, we plot the cost of it against the number 
     \norm{\nabla f(x) - \nabla f(y)}_2 \leq \norm{x-y}_2 
     \]
     Let function f be Lipschitz convex, the following properties hold true:
-    \newline \textbf{Property 1}: For all x, y $\in$ $\mathbb{R}^d$,
+    \newline Property 1: For all x, y $\in$ $\mathbb{R}^d$,
     \[
     f(x) + 	\langle\nabla f(x), y-x\rangle \leq f(y) 
     \]
-    \textbf{Property 2}: For all x, y $\in$ $\mathbb{R}^d$, 
+    Property 2: For all x, y $\in$ $\mathbb{R}^d$, 
     \[
     f(y) \leq f(x) + \langle\nabla f(x), y-x\rangle + \frac{L}{2}\norm{y-x}_2^2
     \]
-    \textbf{Property 3}: For y$_1$, y$_2$...y$_k$ $\in$ $\mathbb{R}^d$, 
+    Property 3: For y$_1$, y$_2$...y$_k$ $\in$ $\mathbb{R}^d$, 
     \[
     f(\frac{y_1+y_2...+y_k}{k}) \leq \frac{f(y_1)+f(y_2)...+f(y_k)}{k}
     \]
@@ -636,33 +616,71 @@ To show the progression of our theta, we plot the cost of it against the number 
     \[
     f(x_k) \leq f(x^*) + \frac{\norm{x_0-x^*}_2^2}{2tk}
     \]
-    Proof: 
-    \newline Next, we can bound f(x
-+), the objective value at the next iteration, in terms of f(x
-∗
-), the optimal objective
-value. Since f is convex, we can write: 
-    \begin{equation}
-    \begin{split}
-    f(x_{i}) + 	\langle\nabla f(x_{i}), x_{i+1}-x_{i}\rangle \leq f(x_{i+1}) 
-    \end{split}
-    \end{equation}
-    \newline Now apply Property 2: 
+    Proof:
+    \newline Take the equation of GD, $x_{i+1} = x_{i} - t\nabla f(x_i)$, and apply Property 2: 
     \begin{equation}
     \begin{split}
     f(x_{i+1}) & \leq  f(x_{i}) + \langle\nabla f(x_{i}), x_{i+1}-x_{i}\rangle + \frac{L}{2}\norm{x_{i+1}-x_{i}}_2^2 \\
     & = f(x_{i}) + \langle\nabla f(x_{i}), x_{i} - t\nabla f(x_{i})-x_{i}\rangle + \frac{L}{2}\norm{x_{i} - t\nabla f(x_{i})-x_{i}}_2^2 \\
     & = f(x) + \langle\nabla f(x), -t\nabla f(x)\rangle + \frac{L}{2}\norm{- t\nabla f(x_{i})}_2^2 \\
     & = f(x) - t\norm{\nabla f(x_{i})}_2^2 +  \frac{Lt^2}{2}\norm{\nabla f(x_{i})}_2^2 \\
-    & = f(x) + t(Lt/2 - 1)\norm{\nabla f(x_{i})}_2^2 \\
-    & \leq f(x) + t(L(1/L)/2 - 1)\norm{\nabla f(x_{i})}_2^2 \\
-    & = f(x) - \frac{t}{2}\norm{\nabla f(x_{i})}_2^2 \\
+    & = f(x_{i}) + t(Lt/2 - 1)\norm{\nabla f(x_{i})}_2^2 \\
+    & \leq f(x_{i}) + t(L(1/L)/2 - 1)\norm{\nabla f(x_{i})}_2^2 \\
+    & = f(x_{i}) - \frac{t}{2}\norm{\nabla f(x_{i})}_2^2 \\
     \end{split}
     \end{equation}
+    \newline Next, we can bound $f(x_{i})$ in terms of $f(x^{*})$, the optimal objective value. By Property 1: 
+    \begin{equation}
+    \begin{split}
+    f(x_{i}) + \langle\nabla f(x_{i}), x^*-x_{i}\rangle \leq f(x^*)\\
+    f(x_{i}) - \langle\nabla f(x_{i}), x_{i} - x^*\rangle \leq f(x^*) \\ 
+    f(x_{i}) \leq f(x^*) + \langle\nabla f(x_{i}), x_{i} - x^*\rangle
+    \end{split}
+    \end{equation}
+    \newline Since we know that $x_{i+1} = x_{i} - t\nabla f(x_i)$, we can easily deduce that $\nabla f(x_i) = \frac{1}{t}(x_{i} - x_{i+1})$. Using this, and the previous two deductions: 
+    \begin{equation}
+    \begin{split}
+    f(x_{i+1}) & \leq f(x_{i}) - \frac{t}{2}\norm{\nabla f(x_{i})}_2^2 \\
+    & \leq f(x^{*}) + \langle\nabla f(x_{i}), x_{i} - x^*\rangle - \frac{t}{2}\norm{\nabla f(x_{i})}_2^2 \\
+    & = f(x^{*}) + \langle \frac{1}{t}(x_i - x_{i+1}), x_i - x^{*}\rangle - \frac{t^2}{2t}\norm{\nabla f(x_{i})}_2^2 \\
+    & = f(x^{*}) + \frac{1}{t}\langle x_{i}, x_{i} - x^{*}\rangle - \frac{1}{t}\langle x_{i+1}, x_{i} - x^{*}\rangle - \frac{1}{2t}\norm{t\nabla f(x_{i})}_2^2 \\
+    & = f(x^{*}) + \frac{1}{t}\langle x_{i}, x_{i} - x^{*}\rangle - \frac{1}{t}\langle x_{i} - t\nable f(x_i), x_{i} - x^{*}\rangle - \frac{1}{2t}\norm{t\nabla f(x_{i})}_2^2 \\
+    & = f(x^{*}) + \frac{1}{t}\langle t\nable f(x_i), x_{i} - x^{*}\rangle - \frac{1}{2t}\norm{t\nabla f(x_{i})}_2^2 \\
+    & = f(x^{*}) - \frac{1}{2t}\left(-2\langle t\nable f(x_i), x_{i} - x^{*}\rangle + \norm{t\nabla f(x_{i})}_2^2 \right) \\
+    & = f\left(x^{*}\right)+\frac{1}{2 t}\left\|x_{i}-x^{*}\right\|_{2}^{2}-\frac{1}{2 t}\left(\left\|x_{i}-x^{*}\right\|_{2}^{2}-2\left\langle t \nabla f\left(x_{i}\right), x_{i}-x^{*}\right\rangle+\left\|t \nabla f\left(x_{i}\right)\right\|_{2}^{2}\right) \\
+    & = f\left(x^{*}\right)+\frac{1}{2 t}\left\|x_{i}-x^{*}\right\|_{2}^{2}-\frac{1}{2 t}\left(\left\|x_{i}-x^{*}\right\|_{2}^{2}-2\left\langle t \nabla f\left(x_{i}\right), x_{i}-x^{*}\right\rangle+\left\|t \nabla f\left(x_{i}\right)\right\|_{2}^{2}\right) \\
+    & = f\left(x^{*}\right)+\frac{1}{2 t}\left\|x_{i}-x^{*}\right\|_{2}^{2}-\frac{1}{2 t}\left\|x_{i}-x^{*}-t \nabla f\left(x_{i}\right)\right\|_{2}^{2} \\
+    & = f\left(x^{*}\right)+\frac{1}{2 t}\left(\left\|x_{i}-x^{*}\right\|_{2}^{2}-\left\|x_{i+1}-x^{*}\right\|_{2}^{2}\right) \\
+    \end{split}
+    \end{equation}
+    This equation holds on every iteration of gradient descent, so if we take the sum over all iterations, we get: 
+    \begin{align}
+    \sum_{i=0}^{k-1} f(x_{i+1})-f(x^{*}) & \leq \sum_{i=0}^{k-1} \frac{1}{2t}(\|x_{i}-x^{*}\|_{2}^{2}-\|x_{i+1}-x^{*}\|_{2}^{2}) \\
+    &=\frac{1}{2 t}(\|x_{0}-x^{*}\|_{2}^{2}-\|x_{k}-x^{*}\|_{2}^{2}) \\
+    & \leq \frac{\|x_{0}-x^{*}\|_{2}^{2}}{2t}
+    \end{align}
+    Since we know that f decreases on every iteration:
+    \begin{align}
+    f(x_k) - f(x^*) & \leq \frac{1}{k}\sum_{i=0}^{k-1} f(x_{i+1})-f(x^{*}) \\
+    & \leq \frac{\|x_{0}-x^{*}\|_{2}^{2}}{2tk}
+    \end{align}
+    It follows that: 
+    \[
+    f(x_k) \leq f(x^*) + \frac{\norm{x_0-x^*}_2^2}{2tk}
+    \]
+    Therefore, we have proven that gradient descent converges to a global optimum for Lipschitz convex functions where the step size t $\leq$ 1/L.
 \end{enumerate}
 \section{Conclusion}
-In conclusion, the application of mathematics in machine learning are essential in understanding the conceptual basics of fundamental algorithms. Through this experience, we further expanded our knowledge on machine learning algorithms and their implementations and subsequent applications, while practicing proof writing. Exploring the process by which these equations were derived helped us better grasp the reasons of why they work the way they do and their importance. 
+In conclusion, the application of mathematics in machine learning are essential in understanding the conceptual basics of fundamental algorithms. Through this experience, we further expanded our knowledge on machine learning algorithms and their implementations and subsequent applications, while practicing proof writing. Exploring the process by which these equations were derived helped us better grasp the reasons of how they work the way they do. 
 \section{References}
-
-
+\nocite{1}
+\nocite{2}
+\nocite{3}
+\nocite{4}
+\nocite{5}
+\nocite{6}
+\nocite{7}
+\nocite{8}
+\nocite{9}
+\bibliography{bib}
 \end{document}
